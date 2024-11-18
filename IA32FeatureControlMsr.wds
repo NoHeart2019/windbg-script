@@ -1,0 +1,49 @@
+$$ Control Features Information
+$$ MSR Index 3AH
+$$ author : No Heart
+$$ Relative  CPUID.01H:ECX[6] 
+$$           CPUID.01H:ECX[5] IA32_SGXLEPUBKEYHASHn MSR
+
+r $t0 = ${$arg1};
+.printf "IA32_FEATURE_CONTROL = %016I64X\n", @$t0; 
+
+
+$$
+$$	Bit Information
+$$
+ 
+ r $t1 = @$t0 & 0x01;
+ .printf "Lock[Bit:0]: %d\n", @$t1;
+ 
+ r $t2 = @$t0 >> 0n1;
+ r $t2 = @$t2 & 0x01;
+ .printf "EnableVmxInsideSmx[Bit:1] : %d \n", @$t2;
+ 
+ r $t3 = @$t0 >> 0n2;
+ r $t3 = @$t3 & 0x01;
+ .printf "EnableVmxOutsideSmx[Bit:2] : %d\n", @$t3;
+ 
+ r $t4 = @$t0 >> 0n8;
+ r $t4 = @$t4 & 0x07F;
+ .printf "SenterLocalFunctionEnable[Bit:8-14] : %d \n", @$t4;
+ 
+ r $t5 = @$t0 >> 0n15;
+ r $t5 = @$t5 & 0x01;
+ .printf "SenterGlobalEnable[Bit:15] : %d \n", @$t5;
+ 
+ r $t6 = @$t0 >> 0n17;
+ r $t6 = @$t6 & 0x01;
+ .printf "SgxLaunchControlEnable[Bit:17]: %d \n", @$t6;
+ 
+ r $t7 = @$t0 >> 0n18;
+ r $t7 = @$t7 & 0x01;
+ .printf "SgxGlobalEnable[Bit:18] : %d \n", @$t7;
+ 
+ 
+
+
+
+
+
+
+	

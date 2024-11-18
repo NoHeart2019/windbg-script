@@ -1,0 +1,65 @@
+$$ readmsr IA32_XXX
+$$
+$$
+$$
+$$
+
+.printf "IA32_PAT "
+rdmsr 0x277
+
+.printf "IA32_EFER "
+rdmsr 0xC0000080
+.printf "IA32_STAR "
+rdmsr 0xC0000081
+.printf "IA32_LSTAR "
+rdmsr 0xC0000082
+.printf "IA32_FMASK "
+rdmsr 0xC0000084
+
+.printf "IA32_FS_BASE "
+rdmsr 0xC0000100
+.printf "IA32_GS_BASE "
+rdmsr 0xC0000101
+.printf "IA32_KERNEL_GS_BASE "
+rdmsr C0000102H
+
+.printf "IA32_VMX_BASIC "
+rdmsr 480H
+.printf "IA32_VMX_PINBASED_CTLS "
+rdmsr 481H
+.printf "IA32_VMX_PROCBASED_CTLS "
+rdmsr 482H
+.printf "IA32_VMX_EXIT_CTLS "
+rdmsr 483H
+.printf "IA32_VMX_ENTRY_CTLS "
+rdmsr 484H
+.printf "IA32_VMX_MISC "
+rdmsr 485H
+.printf "IA32_VMX_CR0_FIXED0 "
+rdmsr 486H
+.printf "IA32_VMX_CR0_FIXED1 "
+rdmsr 487H
+.printf "IA32_VMX_CR4_FIXED0 "
+rdmsr 488H
+.printf "IA32_VMX_CR4_FIXED1 "
+rdmsr 489H
+.printf "IA32_VMX_VMCS_ENUM "
+rdmsr 48AH
+.printf "IA32_VMX_PROCBASED_CTLS2 "
+rdmsr 48BH
+.printf "IA32_VMX_EPT_VPID_ENUM "
+rdmsr 48CH
+.printf "IA32_VMX_TRUE_PINBASED_CTLS "
+rdmsr 48DH
+.printf "IA32_VMX_TRUE_PROCBASED_CTLS "
+rdmsr 48EH
+.printf "IA32_VMX_TRUE_EXIT_CTLS "
+rdmsr 48FH
+.printf "IA32_VMX_TRUE_ENTRY_CTLS "
+rdmsr 490H
+.printf "IA32_VMX_FMFUNC "
+rdmsr 491H
+
+
+.printf "IA32_BNDCFGS "
+rdmsr 0x00000D90

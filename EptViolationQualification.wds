@@ -1,0 +1,70 @@
+$$ Exit Qualification for EPT Violations (Intel Table 27-7)
+$$ author : No Heart
+
+r $t0 = ${$arg1};
+.printf "Exit Qualification = %016I64X\n", @$t0; 
+
+
+$$
+$$	Bit Information
+
+ r $t1 = @$t0 & 0x01;
+ .printf "Read data [bit:0]: %d\n", @$t1;
+ 
+ r $t2 = @$t0 >> 0n1;
+ r $t2 = @$t2 & 0x01;
+ .printf "Write data[Bit:1] : %d \n", @$t2;
+ 
+ r $t3 = @$t0 >> 0n2;
+ r $t3 = @$t3 & 0x01;
+ .printf "Execute[Bit:2] : %d\n", @$t3;
+ 
+ r $t4 = @$t0 >> 0n3;
+ r $t4 = @$t4 & 0x01;
+ .printf "EPT Read[Bit:3] (GPA; EPTEntry[Bit:0]): %d \n", @$t4;
+ 
+ r $t5 = @$t0 >> 0n4;
+ r $t5 = @$t5 & 0x01;
+ .printf "EPT Write[Bit:4] : %d (GPA;EPTEntry[Bit:1])\n", @$t5;
+ 
+ r $t6 = @$t0 >> 0n5;
+ r $t6 = @$t6 & 0x01;
+ .printf "EPT Execute [Bit:5]: %d (GPA; EPTEntry[Bit:2]VMExecutionControl.ModeBasedExecuteControl=1)\n", @$t6;
+ 
+ r $t7 = @$t0 >> 0n6;
+ r $t7 = @$t7 & 0x01;
+ .printf "Execute User-Mode linear address[Bit:6] : %d (GPA EPTEntry[Bit:10];VMExecutionControl.ModeBasedExecuteControl=1)\n", @$t7;
+ 
+ r $t8 = @$t0 >> 0n7;
+ r $t8 = @$t8 & 0x01;
+ .printf "Guest Linear-address Valid [Bit:7] : %d (PDPTEs Mov CR)\n", @$t8;
+ 
+ r $t9 = @$t0 >> 0n8;
+ r $t9 = @$t9 & 0x01;
+ .printf "CausedByTranslation[Bit:8] : %d ([Bit:7]=1, EPTEntry)  \n", @$t9;
+ 
+ r $t10 = @$t0 >> 0n9;
+ r $t10 = @$t10 & 0x01;
+ .printf " UserModeLinearAddress[Bit:9] : %d ([Bit:7]=1[Bit:8]-1 CR0.PG=0)\n", @$t10;
+ 
+ r $t11 = @$t0 >> 0n10;
+ r $t11 = @$t11 & 0x01;
+ .printf "ReadWritePage [Bit:10] : 0x%d ([Bit:7]=1[Bit:8]=1 )  \n", @$t11;
+ 
+ r $t12 = @$t0 >> 0n11;
+ r $t12 = @$t12 & 0x01;
+ .printf "Execute Disable Page [Bit:11] : %d (CR0.PG CR4.PAE IA32_EFER.NXE)\n", @$t12;
+ 
+ r $t13 = @$t0 >> 0n12;
+ r $t13 = @$t13 & 0x01;
+ .printf "NMI [Bit:12]  %d \n", @$t13;
+ 
+ 
+ 
+
+
+
+
+
+
+	

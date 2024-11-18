@@ -1,0 +1,30 @@
+$$ r cr
+$$
+r $t0 = ${$arg1};
+.printf "%X\n", @$t0; 
+
+
+.printf "PE MP EM TS ET NE                               WP    AM                               NW CD PG\n";
+
+r $t1 = 0;
+.while(@$t1 < 0n32)
+{
+	.printf "%02d ", @$t1;
+	r $t1 = $t1 + 1;
+}
+.printf "\n";
+r $t1 = 0;
+.while(@$t1 < 0n32)
+{
+	r $t2 = @$t0 >> @$t1;
+	r $t3 = @$t2 & 1;
+	.printf " %d ", @$t3;
+	r $t1 = @$t1 + 1;
+}
+
+
+
+
+
+
+	

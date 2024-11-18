@@ -1,0 +1,101 @@
+$$ VMX Execution Control
+$$ Primary processor-based VM-execution controls 000000001B 00004002
+$$ VMCS Encodeing 00004002H
+$$ author : No Heart
+
+r $t0 = ${$arg1};
+.printf "PrimaryVmExecutionControl = 0x%x \n", @$t0;
+
+ r $t1 =  @$t0 >> 0n2;
+ r $t1 =  @$t1 & 0x01;
+ .printf "Interrupt windows exiting [Bit:2] : %d\n", @$t1;
+ 
+ r $t2 =  @$t0 >> 0n3;
+ r $t2 =  @$t2 & 0x01;
+ .printf "Use TSC Offsetting [Bit:3] : %d \n", @$t2;
+ 
+ r $t3 = @$t0 >> 0n7;
+ r $t3 = @$t3 & 0x01;
+ .printf "HLT exiting[Bit:7] : %d\n", @$t3;
+ 
+ r $t4 = @$t0 >> 0n9;
+ r $t4 = @$t4 & 0x01;
+ .printf "INVLPG exiting[Bit:9] : %d \n", @$t4;
+ 
+ r $t5 = @$t0 >> 0n10;
+ r $t5 = @$t5 & 0x01;
+ .printf "MWAIT exiting[Bit:10] : %d \n", @$t5;
+ 
+ r $t6 = @$t0 >> 0n11;
+ r $t6 = @$t6 & 0x01;
+ .printf "RDPMC exiting[Bit:11]: %d \n", @$t6;
+ 
+ r $t7 = @$t0 >> 0n12;
+ r $t7 = @$t7 & 0x01;
+ .printf "RDTSC exiting[Bit:12] : %d \n", @$t7;
+ 
+ r $t8 = @$t0 >> 0n15;
+ r $t8 = @$t8 & 0x01;
+ .printf "CR3-load exiting [Bit:15] : %d \n", @$t8;
+ 
+ r $t9 = @$t0 >> 0n16;
+ r $t9 = @$t9 & 0x01;
+ .printf "CR3-store exiting[Bit:16] : %d \n", @$t9;
+ 
+ r $t10 = @$t0 >> 0n19;
+ r $t10 = @$t10 & 0x01;
+ .printf "CR8-loading exiting[Bit:19] : %d \n", @$t10;
+ 
+ r $t11 = @$t0 >> 0n20;
+ r $t11 = @$t11 & 0x01;
+ .printf "CR8-store exiting[Bit:20] : %d \n", @$t11;
+ 
+ r $t12 = @$t0 >> 0n21;
+ r $t12 = @$t12 & 0x01;
+ .printf "Use TPR Shadow [Bit:21] : %d \n", @$t12;
+ 
+ r $t13 = @$t0 >> 0n22;
+ r $t13 = @$t13 & 0x01;
+ .printf "NMI-window exiting[Bit:22] : %d \n", @$t13;
+ 
+ r $t14 = @$t0 >> 0n23;
+ r $t14 = @$t14 & 0x01;
+ .printf "Mov-DR exiting[Bit:23] : %d \n", @$t14;
+ 
+ r $t15 = @$t0 >> 0n24;
+ r $t15 = @$t15 & 0x01;
+ .printf "Unconditional I/O exiting[Bit:24] : %d \n", @$t15;
+ 
+ r $t16 = @$t0 >> 0n25;
+ r $t16 = @$t16 & 0x01;
+ .printf "Use I/O bitmaps exiting[Bit:25] : %d \n", @$t16;
+ 
+ r $t17 = @$t0 >> 0n27;
+ r $t17 = @$t17 & 0x01;
+ .printf "Monitor trap flag[Bit:27] : %d \n", @$t17;
+ 
+ r $t18 = @$t0 >> 0n28;
+ r $t18 = @$t18 & 0x01;
+ .printf "Use MSR bitmaps[Bit:28] : %d \n", @$t18;
+ 
+ r $t19 = @$t0 >> 0n29;
+ r $t19 = @$t19 & 0x01;
+ .printf "MONITOR exiting[Bit:29] : %d \n", @$t19;
+ 
+ r $t1 = @$t0 >> 0n30;
+ r $t1 = @$t1 & 0x01;
+ .printf "PAUSE exiting[Bit:30] : %d \n", @$t1;
+ 
+ r $t2 = @$t0 >> 0n31;
+ r $t2 = @$t2 & 0x01;
+ .printf "Activate Secondary Controls[Bit:31] : %d \n", @$t2;
+ 
+ .printf "**exiting represent VMExit \n";
+ 
+
+
+
+
+
+
+	

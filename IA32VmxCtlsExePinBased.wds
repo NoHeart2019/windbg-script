@@ -1,0 +1,49 @@
+$$ VMX Pin-Based VM-Execution Control
+$$ MSR : IA32_VMX_PINBASED_CTLS and IA32_VMX_TRUE_PINBASED_CTLS
+$$ Low32Bit Must be 1
+$$ High32Bit Must be 0
+$$ author : No Heart
+
+r $t19 = ${$arg1};
+.printf "VMPinBasedExecutionControl = %016I64X\n", @$t19; 
+
+$$ Low 32-bits
+r $t18 = @$t19 & 0x0FFFFFFFF;
+
+$$ High 32-bits 
+r $t17 = @$t19 >> 0n32;
+r $t17 = @$t17 &0x0FFFFFFFF;
+r $t0 = @$t18 & @$t17;
+
+.printf "VmPinBasedExecutionControl = 0x%016x \n", @$t0;
+
+ r $t1 =  @$t0 & 0x01;
+ .printf "External-interrupt exiting [Bit:0] : %d\n", @$t1;
+ 
+ r $t2 =  @$t0 >> 0n3;
+ r $t2 =  @$t2 & 0x01;
+ .printf "NMI exiting [Bit:3] : %d \n", @$t2;
+ 
+ r $t3 = @$t0 >> 0n5;
+ r $t3 = @$t3 & 0x01;
+ .printf "Virtual NMIs [Bit:5] : %d\n", @$t3;
+ 
+ r $t4 = @$t0 >> 0n6;
+ r $t4 = @$t4 & 0x01;
+ .printf "Activate VMX-preemption timer[Bit:6] : %d \n", @$t4;
+ 
+ r $t5 = @$t0 >> 0n7;
+ r $t5 = @$t5 & 0x01;
+ .printf "Process posted interrupts[Bit:7] : %d \n", @$t5;
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+	

@@ -1,0 +1,71 @@
+$$ VMX Exit Control
+$$ MSR : IA32_VMX_EXIT_CTLS and IA32_VMX_TRUE_EXIT_CTLS
+$$ Low32Bit Must be 1
+$$ High32Bit Must be 0
+$$ author : NoHeart
+
+r $t19 = ${$arg1};
+.printf "VMExitControl = %016I64X\n", @$t19; 
+
+$$ Low 32-bits
+r $t18 = @$t19 & 0x0FFFFFFFF;
+
+$$ High 32-bits 
+r $t17 = @$t19 >> 0n32;
+r $t17 = @$t17 &0x0FFFFFFFF;
+r $t0 = @$t18 & @$t17;
+
+.printf "VmExitControl = 0x%016x \n", @$t0;
+
+ r $t1 =  @$t0 >> 0n2;
+ r $t1 =  @$t1 & 0x01;
+ .printf "Save Debug Controls[Bit:2] : %d\n", @$t1;
+ 
+ r $t2 =  @$t0 >> 0n9;
+ r $t2 =  @$t2 & 0x01;
+ .printf "Host address-space size [Bit:9] : %d \n", @$t2;
+ 
+ r $t3 = @$t0 >> 0n12;
+ r $t3 = @$t3 & 0x01;
+ .printf "Load IA32_PERF_GLOBAL_CTL[Bit:12] : %d\n", @$t3;
+ 
+ r $t4 = @$t0 >> 0n15;
+ r $t4 = @$t4 & 0x01;
+ .printf "Acknowlege Interrupt On exit[Bit:15] : %d \n", @$t4;
+ 
+ r $t5 = @$t0 >> 0n18;
+ r $t5 = @$t5 & 0x01;
+ .printf "Save IA32_PAT[Bit:18] : %d \n", @$t5;
+ 
+ r $t6 = @$t0 >> 0n19;
+ r $t6 = @$t6 & 0x01;
+ .printf "Load IA32_PAT[Bit:19]: %d \n", @$t6;
+ 
+ r $t7 = @$t0 >> 0n20;
+ r $t7 = @$t7 & 0x01;
+ .printf "Save IA32_EFER[Bit:20] : %d \n", @$t7;
+ 
+ r $t8 = @$t0 >> 0n21;
+ r $t8 = @$t8 & 0x01;
+ .printf "Load IA32_EFER[Bit:21] : %d \n", @$t8;
+ 
+ r $t9 = @$t0 >> 0n22;
+ r $t9 = @$t9 & 0x01;
+ .printf "Save VMX-preemption timer value[Bit:22] : %d \n", @$t9;
+ 
+ r $t10 = @$t0 >> 0n23;
+ r $t10 = @$t10 & 0x01;
+ .printf "Clear IA32_BNDCFGS[Bit:23] : %d \n", @$t10;
+ 
+ r $t11 = @$t0 >> 0n23;
+ r $t11 = @$t11 & 0x01;
+ .printf "Conceal VM exits from Intel PT[Bit:23] : %d \n", @$t11;
+ 
+ 
+
+
+
+
+
+
+	

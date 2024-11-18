@@ -1,0 +1,51 @@
+$$ Basic VMX Information
+$$ MSR Index 480H
+$$ author : No Heart
+
+r $t0 = ${$arg1};
+.printf "IA32_VMX_BASIC_MSR = %016I64X\n", @$t0; 
+
+
+$$
+$$	Bit Information
+$$
+ $$Bits 30:0 Vmcs Revision Identifier
+ r $t1 = @$t0 & 0x7FFFFFFF;
+ .printf "VmcsRevisionId[Bit:0-30]: %d\n", @$t1;
+ 
+ r $t2 = @$t0 >> 0n32;
+ r $t2 = @$t2 & 0x1FFF;
+ .printf "VmcsSize[Bit:32-44] : %d \n", @$t2;
+ 
+ r $t3 = @$t0 >> 0n48;
+ r $t3 = @$t3 & 0x01;
+ .printf "VmcsWidth[Bit:48] : %d\n", @$t3;
+ 
+ r $t4 = @$t0 >> 0n49;
+ r $t4 = @$t4 & 0x01;
+ .printf "Dual-MonitorTreat[Bit:49] : %d \n", @$t4;
+ 
+ r $t5 = @$t0 >> 0n50;
+ r $t5 = @$t5 & 0x0F;
+ .printf "VmcsMemoryType[Bit:50-53] : %d \n", @$t5;
+ 
+ r $t6 = @$t0 >> 0n54;
+ r $t6 = @$t6 & 0x01;
+ .printf "VM-exit Instruction:InsOuts Report[Bit:54]: %d \n", @$t6;
+ 
+ r $t7 = @$t0 >> 0n55;
+ r $t7 = @$t7 & 0x01;
+ .printf "VmxControlDefault1[Bit:55] : %d \n", @$t7;
+ 
+ r $t8 = @$t0 >> 0n56;
+ r $t8 = @$t8 & 0x01;
+ .printf "VmEntryDeliverHardwareException[Bit:56] : %d \n", @$t8;
+ 
+ 
+
+
+
+
+
+
+	

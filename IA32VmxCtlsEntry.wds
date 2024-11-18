@@ -1,0 +1,52 @@
+$$ VMX Entry Control
+$$VM-entry controls 000001001B 00004012H
+
+r $t0 = ${$arg1};
+
+
+.printf "VmEntryControl = 0x%016x \n", @$t0;
+
+ r $t1 =  @$t0 >> 0n2;
+ r $t1 =  @$t1 & 0x01;
+ .printf "Load Debug Controls[Bit:2] : %d\n", @$t1;
+ 
+ r $t2 =  @$t0 >> 0n9;
+ r $t2 =  @$t2 & 0x01;
+ .printf "Ia-32e Mode Guest [Bit:9] : %d \n", @$t2;
+ 
+ r $t3 = @$t0 >> 0n10;
+ r $t3 = @$t3 & 0x01;
+ .printf "Entry to SMM [Bit:10] : %d\n", @$t3;
+ 
+ r $t4 = @$t0 >> 0n11;
+ r $t4 = @$t4 & 0x01;
+ .printf "Deactivate Dual-monitor treatment[Bit:11] : %d \n", @$t4;
+ 
+ r $t5 = @$t0 >> 0n13;
+ r $t5 = @$t5 & 0x01;
+ .printf "Load IA32_PERF_GLOBAL_CTL[Bit:13] : %d \n", @$t5;
+ 
+ r $t6 = @$t0 >> 0n14;
+ r $t6 = @$t6 & 0x01;
+ .printf "Load IA32_PAT[Bit:14]: %d \n", @$t6;
+ 
+ r $t7 = @$t0 >> 0n15;
+ r $t7 = @$t7 & 0x01;
+ .printf "Load IA32_EFER[Bit:15] : %d \n", @$t7;
+ 
+ r $t8 = @$t0 >> 0n16;
+ r $t8 = @$t8 & 0x01;
+ .printf "Load IA32_BNDCFGS[Bit:16] : %d \n", @$t8;
+ 
+ r $t9 = @$t0 >> 0n17;
+ r $t9 = @$t9 & 0x01;
+ .printf "Conceal Vm Entries From Intel PT[Bit:17] : %d \n", @$t9;
+ 
+ 
+
+
+
+
+
+
+	

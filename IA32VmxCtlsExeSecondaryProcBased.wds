@@ -1,0 +1,116 @@
+$$ VMX Execution Control
+$$ Secondary Processor-Based VM-Execution Controls
+$$ MSR : IA32_VMX_PROCBASED_CTLS2
+$$ Low32Bit Must be 1
+$$ High32Bit Must be 0
+$$ author : 	No Heart
+
+r $t19 = ${$arg1};
+
+r $t0 = @$t19
+
+.printf "SecondaryVmExecutionControl = 0x%x \n", @$t0;
+
+ r $t1 =  @$t0 >> 0n0;
+ r $t1 =  @$t1 & 0x01;
+ .printf "Virtual APIC access [Bit:0] : %d\n", @$t1;
+ 
+ r $t2 =  @$t0 >> 0n1;
+ r $t2 =  @$t2 & 0x01;
+ .printf "Enable EPT [Bit:1] : %d \n", @$t2;
+ 
+ r $t3 = @$t0 >> 0n2;
+ r $t3 = @$t3 & 0x01;
+ .printf "Descriptor table exiting[Bit:2] : %d\n", @$t3;
+ 
+ r $t4 = @$t0 >> 0n3;
+ r $t4 = @$t4 & 0x01;
+ .printf "Enable RDTSCP[Bit:3] : %d \n", @$t4;
+ 
+ r $t5 = @$t0 >> 0n4;
+ r $t5 = @$t5 & 0x01;
+ .printf "Virtual x2APIC mode[Bit:4] : %d \n", @$t5;
+ 
+ r $t6 = @$t0 >> 0n5;
+ r $t6 = @$t6 & 0x01;
+ .printf "Enable VPID[Bit:5]: %d \n", @$t6;
+ 
+ r $t7 = @$t0 >> 0n6;
+ r $t7 = @$t7 & 0x01;
+ .printf "WBINVD Exiting[Bit:6] : %d \n", @$t7;
+ 
+ r $t8 = @$t0 >> 0n7;
+ r $t8 = @$t8 & 0x01;
+ .printf "Unrestricted Guest [Bit:7] : %d \n", @$t8;
+ 
+ r $t9 = @$t0 >> 0n8;
+ r $t9 = @$t9 & 0x01;
+ .printf "APIC Register Virtualization[Bit:8] : %d \n", @$t9;
+ 
+ r $t10 = @$t0 >> 0n9;
+ r $t10 = @$t10 & 0x01;
+ .printf "Virtual Interrupt Delivery[Bit:9] : %d \n", @$t10;
+ 
+ r $t11 = @$t0 >> 0n10;
+ r $t11 = @$t11 & 0x01;
+ .printf "PAUSE Loop Exiting[Bit:10] : %d \n", @$t11;
+ 
+ r $t12 = @$t0 >> 0n11;
+ r $t12 = @$t12 & 0x01;
+ .printf "RDRAND Exting [Bit:11] : %d \n", @$t12;
+ 
+ r $t13 = @$t0 >> 0n12;
+ r $t13 = @$t13 & 0x01;
+ .printf "Enable INVPCID[Bit:12] : %d \n", @$t13;
+ 
+ r $t14 = @$t0 >> 0n13;
+ r $t14 = @$t14 & 0x01;
+ .printf "Enable VM Fuctions[Bit:13] : %d \n", @$t14;
+ 
+ r $t15 = @$t0 >> 0n14;
+ r $t15 = @$t15 & 0x01;
+ .printf "VMCS Shadowing[Bit:14] : %d \n", @$t15;
+ 
+ r $t16 = @$t0 >> 0n15;
+ r $t16 = @$t16 & 0x01;
+ .printf "Enable ENCLS Exiting[Bit:15] : %d \n", @$t16;
+ 
+ r $t17 = @$t0 >> 0n16;
+ r $t17 = @$t17 & 0x01;
+ .printf "RDSEED Exiting[Bit:16] : %d \n", @$t17;
+ 
+ r $t18 = @$t0 >> 0n17;
+ r $t18 = @$t18 & 0x01;
+ .printf "Enable PML[Bit:17] : %d \n", @$t18;
+ 
+ r $t19 = @$t0 >> 0n18;
+ r $t19 = @$t19 & 0x01;
+ .printf "EPT Violation #VE[Bit:18] : %d \n", @$t19;
+ 
+ r $t1 = @$t0 >> 0n19;
+ r $t1 = @$t1 & 0x01;
+ .printf "Conceal VMX Non-Root Operation From Intel PT[Bit:19] : %d \n", @$t1;
+ 
+ r $t2 = @$t0 >> 0n20;
+ r $t2 = @$t2 & 0x01;
+ .printf "Enable XSAVE/XRSTORS[Bit:20] : %d \n", @$t2;
+ 
+ r $t3 = @$t0 >> 0n22;
+ r $t3 = @$t3 & 0x01;
+ .printf "Mode-based execute control for EPT[Bit:22] : %d \n", @$t3;
+ 
+ r $t4 = @$t0 >> 0n25;
+ r $t4 = @$t4 & 0x01;
+ .printf "Use TSC Scaling[Bit:25] : %d \n", @$t4;
+ 
+ 
+ 
+ .printf "**exiting represent VMExit \n";
+ 
+
+
+
+
+
+
+	

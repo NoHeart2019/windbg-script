@@ -1,0 +1,39 @@
+$$  CR3 (Intel Vol 3A 2.5)
+$$  Containing the physical address of the base of paging-structure hierachy and two flags
+$$  Physical address is PFN.
+$$  PCD and PWT Flags control caching of that paging structure in the processor internal data cache
+$$  (they do not control TLB caching of page-directory information)
+r $t0 = ${$arg1};
+.printf "CR3 = %X\n", @$t0; 
+
+.printf "          P  P    									\n"
+.printf "          W  C    									\n"
+.printf "          T  D                       Page-Directory Base\n";
+
+r $t1 = 0;
+.while(@$t1 < 0n32)
+{
+	.printf "%02d ", @$t1;
+	r $t1 = @$t1 + 1;
+}
+.printf "\n";
+r $t1 = 0;
+.while(@$t1 < 0n32)
+{
+	r $t2 = @$t0 >> @$t1;
+	r $t3 = @$t2 & 1;
+	.printf " %d ", @$t3;
+	r $t1 = @$t1 + 1;
+}
+
+$$ Bit 12:31
+r $t4 = @$t0 >> 0n12;
+
+
+.printf "\n";
+.printf "Page-Directory Base (Bit:12-Bit:31(63)) : %x\n", @$t4;
+
+
+
+
+	
